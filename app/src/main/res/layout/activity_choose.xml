@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseActivity">
+
+    <ImageView
+        android:id="@+id/backgroundImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/halogen"
+        android:text="@string/choose"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundImageView" />
+
+    <ImageButton
+        android:id="@+id/btnBackChoose"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toBottomOf="@id/textView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/btnRandom"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_random" />
+
+            <ImageButton
+                android:id="@+id/btnAnimals"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_animals" />
+
+            <ImageButton
+                android:id="@+id/btnFlora"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_flora" />
+
+            <ImageButton
+                android:id="@+id/btnCountry"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_country" />
+
+            <ImageButton
+                android:id="@+id/btnFood"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_food" />
+
+            <ImageButton
+                android:id="@+id/btnMush"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_mush" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnFlowers"
+                    android:layout_width="300dp"
+                    android:layout_height="105dp"
+                    android:background="@drawable/btn_flowers" />
+
+                <ImageView
+                    android:id="@+id/newFlowers"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    app:srcCompat="@drawable/tip_new"
+                    android:layout_alignTop="@id/btnFlowers"
+                    android:layout_alignRight="@id/btnFlowers"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="0dp"/>
+
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/btnCurrency"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_currency" />
+
+            <ImageButton
+                android:id="@+id/btnCar"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_car" />
+
+            <ImageButton
+                android:id="@+id/btnRiver"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_river" />
+
+            <ImageButton
+                android:id="@+id/btnCity"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_city" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnProf"
+                    android:layout_width="300dp"
+                    android:layout_height="105dp"
+                    android:background="@drawable/btn_prof" />
+
+                <ImageView
+                    android:id="@+id/newProf"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    app:srcCompat="@drawable/tip_new"
+                    android:layout_alignTop="@id/btnProf"
+                    android:layout_alignRight="@id/btnProf"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="0dp"/>
+
+            </RelativeLayout>
+
+
+
+            <ImageButton
+                android:id="@+id/btnChemistry"
+                android:layout_width="300dp"
+                android:layout_height="105dp"
+                android:background="@drawable/btn_chemistry" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnSport"
+                    android:layout_width="300dp"
+                    android:layout_height="105dp"
+                    android:background="@drawable/btn_sport" />
+
+                <ImageView
+                    android:id="@+id/newSport"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    app:srcCompat="@drawable/tip_new"
+                    android:layout_alignTop="@id/btnSport"
+                    android:layout_alignRight="@id/btnSport"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="0dp"/>
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:fontFamily="@font/halogen"
+                android:textSize="25dp"
+                android:text="Голосуй за новые категории в Телеграм-канале!"
+                android:padding="30dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
