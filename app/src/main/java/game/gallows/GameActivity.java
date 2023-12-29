@@ -103,7 +103,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             array = arrays[randomIndex];
         }
 
-
         catText = findViewById(R.id.catText);
         catText.setText(category);
 
@@ -163,10 +162,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             button.setOnClickListener(this);
             buttons[i] = button;
         }
+        openFirstAndLastLetter(); // Открываем первую и последнюю букву
 
+        /*
         if (!category.startsWith("Уровень")) {
             openFirstAndLastLetter(); // Открываем первую и последнюю букву
         }
+        */
     }
 
     @Override
@@ -262,11 +264,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateStatistics(boolean isWin) {
+        int currentLevel = sharedPreferences.getInt("userLevel", 1);
+        int currentMoney = sharedPreferences.getInt("userMoney", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (isWin) {
             correctAttempts++;
+            editor.putInt("userLevel", currentLevel+1);
+            editor.putInt("userMoney", currentMoney+3);
             if (fallsCount == 0) {
                 perfectAttempts++;
+                editor.putInt("userMoney", currentMoney+5);
             }
         }
         editor.putInt("correctAttempts", correctAttempts);
@@ -348,6 +355,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 // Создание нового интента для перезапуска активности
                 Intent intent = new Intent(GameActivity.this, GameActivity.class);
                 intent.putExtra("array", array);
+                category = "Уровень " + String.valueOf(sharedPreferences.getInt("userLevel", 1));
                 intent.putExtra("category", category);
                 startActivity(intent);
                 finish();
