@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     TextView catText;
     String[] array, animalsArray, floraArray, countryArray, foodArray, mushArray, currencyArray, carArray, riverArray, cityArray, chemArray, profArray, sportArray, flowersArray;
     MediaPlayer sheet1, seehuman, win, lose;
-    boolean soundMode = true;
+    boolean soundMode = true, isCampaign = false;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -78,6 +78,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         category = String.valueOf(intent.getStringExtra("category"));
 
         if (category.startsWith("Уровень")) {
+            isCampaign = true;
             Resources res = getResources();
 
             // массив массивов по категориям
@@ -162,13 +163,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             button.setOnClickListener(this);
             buttons[i] = button;
         }
-        openFirstAndLastLetter(); // Открываем первую и последнюю букву
 
-        /*
+
         if (!category.startsWith("Уровень")) {
             openFirstAndLastLetter(); // Открываем первую и последнюю букву
         }
-        */
     }
 
     @Override
@@ -269,11 +268,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (isWin) {
             correctAttempts++;
-            editor.putInt("userLevel", currentLevel+1);
-            editor.putInt("userMoney", currentMoney+3);
+            if (isCampaign) {
+                editor.putInt("userLevel", currentLevel+1);
+                editor.putInt("userMoney", currentMoney+3);
+            }
+            else editor.putInt("userMoney", currentMoney+1);
+
             if (fallsCount == 0) {
                 perfectAttempts++;
-                editor.putInt("userMoney", currentMoney+5);
+                if (isCampaign) editor.putInt("userMoney", currentMoney+5);
+                else editor.putInt("userMoney", currentMoney+2);
             }
         }
         editor.putInt("correctAttempts", correctAttempts);
@@ -355,7 +359,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 // Создание нового интента для перезапуска активности
                 Intent intent = new Intent(GameActivity.this, GameActivity.class);
                 intent.putExtra("array", array);
-                category = "Уровень " + String.valueOf(sharedPreferences.getInt("userLevel", 1));
+                if (isCampaign) category = "Уровень " + String.valueOf(sharedPreferences.getInt("userLevel", 1));
                 intent.putExtra("category", category);
                 startActivity(intent);
                 finish();
