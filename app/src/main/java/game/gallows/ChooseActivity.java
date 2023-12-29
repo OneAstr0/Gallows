@@ -3,6 +3,7 @@ package game.gallows;
 import static android.view.View.GONE;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,15 +18,12 @@ import android.widget.ImageView;
 import java.util.Random;
 
 public class ChooseActivity extends AppCompatActivity {
-    ImageButton btnRandom, btnBack, btnAnimals, btnFlora, btnCountry, btnFood, btnMush, btnCurrency, btnCar, btnRiver, btnCity, btnChemistry, btnProf, btnSport, btnFlowers;
+    AppCompatButton btnAnimals, btnFlora, btnCountry, btnFood, btnMush, btnCurrency, btnCar, btnRiver, btnCity, btnChemistry, btnProf, btnSport, btnFlowers;
+    ImageButton btnBack;
     MediaPlayer sheet1;
     String[] animalsArray, floraArray, countryArray, foodArray, mushArray, currencyArray, carArray, riverArray, cityArray, chemArray, profArray, sportArray, flowersArray;
-    String category;
-    ImageView newProfImage, newSportImage, newFlowersImage;
 
     boolean soundMode = true;
-
-    private boolean newProf, newSport, newFlowers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +33,10 @@ public class ChooseActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SettingsActivity.SHARED_PREFS, MODE_PRIVATE);
         soundMode = sharedPreferences.getBoolean(SettingsActivity.SOUND_MODE, true);
 
-        newProf = sharedPreferences.getBoolean("newProf", true);
-        newSport = sharedPreferences.getBoolean("newSport", true);
-        newFlowers = sharedPreferences.getBoolean("newFlowers", true);
-
-        newProfImage = findViewById(R.id.newProf);
-        newSportImage = findViewById(R.id.newSport);
-        newFlowersImage = findViewById(R.id.newFlowers);
-
-
         btnBack = findViewById(R.id.btnBackChoose);
 
         sheet1 = MediaPlayer.create(this, R.raw.sheet1);
 
-        btnRandom = findViewById(R.id.btnRandom);
         btnAnimals = findViewById(R.id.btnAnimals);
         btnFlora = findViewById(R.id.btnFlora);
         btnCountry = findViewById(R.id.btnCountry);
@@ -80,21 +68,6 @@ public class ChooseActivity extends AppCompatActivity {
         flowersArray = res.getStringArray(R.array.flowersArray);
 
 
-
-        // Проверка для отображения звёздочек New для новых категорий
-        // МЕНЯТЬ И ОБНОВЛЯТЬ ПРИ КАЖДОЙ НОВОЙ ВЕРСИИ!!!!!!!!!!!!!!!!
-        if (newProf == false) {
-            newProfImage.setVisibility(GONE);
-        }
-        if (newSport == false) {
-            newSportImage.setVisibility(GONE);
-        }
-        if (newFlowers == false) {
-            newFlowersImage.setVisibility(GONE);
-        }
-
-
-
         if (btnBack != null) {
             btnBack.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -113,75 +86,6 @@ public class ChooseActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(ChooseActivity.this, GameActivity.class);
-
-
-        if (btnRandom != null) {
-            btnRandom.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (sheet1.isPlaying()) {
-                        sheet1.pause();
-                        sheet1.seekTo(0);
-                    }
-                    if (soundMode) {
-                        sheet1.start();
-                    }
-
-                    Random random = new Random();
-                    int randomIndex = random.nextInt(13);
-
-                    switch (randomIndex) {
-                        case 0:
-                            intent.putExtra("array", animalsArray);
-                            break;
-                        case 1:
-                            intent.putExtra("array", floraArray);
-                            break;
-                        case 2:
-                            intent.putExtra("array", countryArray);
-                            break;
-                        case 3:
-                            intent.putExtra("array", foodArray);
-                            break;
-                        case 4:
-                            intent.putExtra("array", mushArray);
-                            break;
-                        case 5:
-                            intent.putExtra("array", currencyArray);
-                            break;
-                        case 6:
-                            intent.putExtra("array", carArray);
-                            break;
-                        case 7:
-                            intent.putExtra("array", riverArray);
-                            break;
-                        case 8:
-                            intent.putExtra("array", cityArray);
-                            break;
-                        case 9:
-                            intent.putExtra("array", chemArray);
-                            break;
-                        case 10:
-                            intent.putExtra("array", profArray);
-                            break;
-                        case 11:
-                            intent.putExtra("array", sportArray);
-                            break;
-                        case 12:
-                            intent.putExtra("array", flowersArray);
-                            break;
-                        default:
-                            intent.putExtra("array", animalsArray);
-                            break;
-                    }
-
-                    intent.putExtra("category", "Случайная кат.");
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }
-
 
         if (btnAnimals != null) {
             btnAnimals.setOnClickListener(new View.OnClickListener() {
@@ -288,11 +192,6 @@ public class ChooseActivity extends AppCompatActivity {
             btnFlowers.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    if (newFlowers) {
-                        editor.putBoolean("newFlowers", false);
-                        editor.apply();
-                    }
 
                     if (sheet1.isPlaying()) {
                         sheet1.pause();
@@ -414,11 +313,6 @@ public class ChooseActivity extends AppCompatActivity {
             btnProf.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    if (newProf) {
-                        editor.putBoolean("newProf", false);
-                        editor.apply();
-                    }
 
                     if (sheet1.isPlaying()) {
                         sheet1.pause();
@@ -441,12 +335,6 @@ public class ChooseActivity extends AppCompatActivity {
             btnSport.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    if (newSport) {
-                        editor.putBoolean("newSport", false);
-                        editor.apply();
-                    }
-
                     if (sheet1.isPlaying()) {
                         sheet1.pause();
                         sheet1.seekTo(0);

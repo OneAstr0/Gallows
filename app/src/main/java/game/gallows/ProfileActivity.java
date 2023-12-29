@@ -19,7 +19,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     boolean soundMode = true;
     SharedPreferences sharedPreferences;
-
     Button btnReset;
     TextView totalAttemptsTextView, correctAttemptsTextView, perfectAttemptsTextView;
 

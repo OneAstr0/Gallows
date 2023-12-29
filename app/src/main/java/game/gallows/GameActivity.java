@@ -37,18 +37,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     TextView[] slots;
     Button[] buttons;
     String randomWord, category;
-    int fallsCount = 0;
+    int fallsCount = 0, totalAttempts, correctAttempts, perfectAttempts;
     TextView catText;
     String[] array, animalsArray, floraArray, countryArray, foodArray, mushArray, currencyArray, carArray, riverArray, cityArray, chemArray, profArray, sportArray, flowersArray;
-
     MediaPlayer sheet1, seehuman, win, lose;
-
     boolean soundMode = true;
     SharedPreferences sharedPreferences;
-
-    int totalAttempts;
-    int correctAttempts;
-    int perfectAttempts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +62,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         editor.putInt("totalAttempts", totalAttempts);
         editor.apply();
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/halogen.ttf");
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/await.ttf");
         gallows = findViewById(R.id.gallows);
         gallows.setImageResource(R.drawable.f0);
 
@@ -83,72 +77,32 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         array = intent.getStringArrayExtra("array");
         category = String.valueOf(intent.getStringExtra("category"));
 
-        // Гениальная вещь (нет) для след.слова при случайной категории...
-        // Нужно исправить будет это как нибудь.
-        if ("Случайная кат.".equals(category)) {
+        if (category.startsWith("Уровень")) {
             Resources res = getResources();
-            animalsArray = res.getStringArray(R.array.animals25);
-            floraArray = res.getStringArray(R.array.flora);
-            countryArray = res.getStringArray(R.array.countryArray);
-            foodArray = res.getStringArray(R.array.foodArray);
-            mushArray = res.getStringArray(R.array.mushArray);
-            currencyArray = res.getStringArray(R.array.currencyArray);
-            carArray = res.getStringArray(R.array.carArray);
-            riverArray = res.getStringArray(R.array.riverArray);
-            cityArray = res.getStringArray(R.array.cityArray);
-            chemArray = res.getStringArray(R.array.chemArray);
-            profArray = res.getStringArray(R.array.profArray);
-            sportArray = res.getStringArray(R.array.sportArray);
-            flowersArray = res.getStringArray(R.array.flowersArray);
+
+            // массив массивов по категориям
+            String[][] arrays = {
+                    res.getStringArray(R.array.animals25),
+                    res.getStringArray(R.array.flora),
+                    res.getStringArray(R.array.countryArray),
+                    res.getStringArray(R.array.foodArray),
+                    res.getStringArray(R.array.mushArray),
+                    res.getStringArray(R.array.currencyArray),
+                    res.getStringArray(R.array.carArray),
+                    res.getStringArray(R.array.riverArray),
+                    res.getStringArray(R.array.cityArray),
+                    res.getStringArray(R.array.chemArray),
+                    res.getStringArray(R.array.profArray),
+                    res.getStringArray(R.array.sportArray),
+                    res.getStringArray(R.array.flowersArray)
+            };
 
             Random random = new Random();
-            int randomIndex = random.nextInt(13);
+            int randomIndex = random.nextInt(arrays.length);
 
-            switch (randomIndex) {
-                case 0:
-                    intent.putExtra("array", animalsArray);
-                    break;
-                case 1:
-                    intent.putExtra("array", floraArray);
-                    break;
-                case 2:
-                    intent.putExtra("array", countryArray);
-                    break;
-                case 3:
-                    intent.putExtra("array", foodArray);
-                    break;
-                case 4:
-                    intent.putExtra("array", mushArray);
-                    break;
-                case 5:
-                    intent.putExtra("array", currencyArray);
-                    break;
-                case 6:
-                    intent.putExtra("array", carArray);
-                    break;
-                case 7:
-                    intent.putExtra("array", riverArray);
-                    break;
-                case 8:
-                    intent.putExtra("array", cityArray);
-                    break;
-                case 9:
-                    intent.putExtra("array", chemArray);
-                    break;
-                case 10:
-                    intent.putExtra("array", profArray);
-                    break;
-                case 11:
-                    intent.putExtra("array", sportArray);
-                    break;
-                case 12:
-                    intent.putExtra("array", flowersArray);
-                    break;
-                default:
-                    intent.putExtra("array", animalsArray);
-                    break;
-            }
+            array = arrays[randomIndex];
         }
+
 
         catText = findViewById(R.id.catText);
         catText.setText(category);
@@ -179,7 +133,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             });
         }
 
-        // работа с выводом
+        // работа с выводом и обработкой выпавшего слова
         layout = findViewById(R.id.layoutContainer);
         slots = new TextView[randomWord.length()];
         buttons = new Button[34];
@@ -210,7 +164,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             buttons[i] = button;
         }
 
-        openFirstAndLastLetter(); // Открываем первую и последнюю букву
+        if (!category.startsWith("Уровень")) {
+            openFirstAndLastLetter(); // Открываем первую и последнюю букву
+        }
     }
 
     @Override

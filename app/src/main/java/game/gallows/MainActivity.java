@@ -1,36 +1,52 @@
 package game.gallows;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimatedImageDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton btnGame, btnRules, btnSettings, btnCampaign, btnNews, btnProfile;
-    MediaPlayer sheet1;
-
-    boolean soundMode = true;
-
+    private AppCompatButton btnGame, btnCampaign, btnShop;
+    private ImageButton btnProfile;
+    private MediaPlayer sheet1;
+    private TextView balance;
+    private boolean soundMode = true;
+    private ImageView fallenSnow;
+    private AnimatedImageDrawable animatedGifFallenSnow;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fallenSnow = findViewById(R.id.fallenSnow);
+        animatedGifFallenSnow = (AnimatedImageDrawable) fallenSnow.getDrawable();
 
-        SharedPreferences sharedPreferences = getSharedPreferences(SettingsActivity.SHARED_PREFS, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(SettingsActivity.SHARED_PREFS, MODE_PRIVATE);
         soundMode = sharedPreferences.getBoolean(SettingsActivity.SOUND_MODE, true);
 
-        btnGame = findViewById(R.id.btnGame);
-        btnRules = findViewById(R.id.btnRules);
+        int money = sharedPreferences.getInt("userMoney", 0);
+        // money = 1;
+        balance = findViewById(R.id.userBalanceMain);
+        balance.setText(String.valueOf(money));
+
+        int currentLevel = sharedPreferences.getInt("userLevel", 1);
         btnCampaign = findViewById(R.id.btnCampaign);
-        btnNews = findViewById(R.id.btnNews);
-        btnSettings = findViewById(R.id.btnSettings);
+        btnCampaign.setText("Уровень " + String.valueOf(currentLevel));
+
+        btnGame = findViewById(R.id.btnGame);
         btnProfile = findViewById(R.id.btnProfile);
+        btnShop = findViewById(R.id.btnShop);
 
         sheet1 = MediaPlayer.create(this, R.raw.sheet1);
 
@@ -53,44 +69,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        if (btnRules != null) {
-            btnRules.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (sheet1.isPlaying()) {
-                        sheet1.pause();
-                        sheet1.seekTo(0);
-                    }
-                    if (soundMode) {
-                        sheet1.start();
-                    }
-
-                    Intent intent = new Intent(MainActivity.this, RulesActivity.class);
-                    startActivity(intent);
-
-                }
-            });
-        }
-
-        if (btnSettings != null) {
-            btnSettings.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (sheet1.isPlaying()) {
-                        sheet1.pause();
-                        sheet1.seekTo(0);
-                    }
-                    if (soundMode) {
-                        sheet1.start();
-                    }
-
-                    Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                    startActivity(intent);
-
-                }
-            });
-        }
-
         if (btnCampaign != null) {
             btnCampaign.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,30 +81,33 @@ public class MainActivity extends AppCompatActivity {
                         sheet1.start();
                     }
 
-                    Intent intent = new Intent(MainActivity.this, CampaignActivity.class);
+
+                    Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                    intent.putExtra("array", "");
+                    intent.putExtra("category", "Уровень " + String.valueOf(currentLevel));
                     startActivity(intent);
                 }
             });
         }
 
-        if (btnNews != null) {
-            btnNews.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (sheet1.isPlaying()) {
-                        sheet1.pause();
-                        sheet1.seekTo(0);
-                    }
-                    if (soundMode) {
-                        sheet1.start();
-                    }
-
-                    Intent intent = new Intent(MainActivity.this,  NewsActivity.class);
-                    startActivity(intent);
-
-                }
-            });
-        }
+//        if (btnNews != null) {
+//            btnNews.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (sheet1.isPlaying()) {
+//                        sheet1.pause();
+//                        sheet1.seekTo(0);
+//                    }
+//                    if (soundMode) {
+//                        sheet1.start();
+//                    }
+//
+//                    Intent intent = new Intent(MainActivity.this,  NewsActivity.class);
+//                    startActivity(intent);
+//
+//                }
+//            });
+//        }
 
         if (btnProfile != null) {
             btnProfile.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +128,18 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        animatedGifFallenSnow.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        animatedGifFallenSnow.stop();
     }
 
     @Override

@@ -11,18 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/background"
+        android:src="@color/backgroundHead"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
+        style="@style/mainTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/halogen"
         android:text="@string/choose"
-        android:textColor="@color/black"
-        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    -->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,141 +50,123 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <ImageButton
-                android:id="@+id/btnRandom"
-                android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_random" />
-
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAnimals"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_animals" />
+                android:layout_height="80dp"
+                android:text="Животные"
+                android:background="@drawable/main_buttons_background" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFlora"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_flora" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Природа"
+                android:background="@drawable/main_buttons_background" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCountry"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_country" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Страны"
+                android:background="@drawable/main_buttons_background" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFood"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_food" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Еда"
+                android:background="@drawable/main_buttons_background" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMush"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_mush" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Грибы"
+                android:background="@drawable/main_buttons_background" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnFlowers"
+                style="@style/mainTextButton"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Цветы"
+                android:background="@drawable/main_buttons_background" />
 
-                <ImageButton
-                    android:id="@+id/btnFlowers"
-                    android:layout_width="300dp"
-                    android:layout_height="105dp"
-                    android:background="@drawable/btn_flowers" />
-
-                <ImageView
-                    android:id="@+id/newFlowers"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    app:srcCompat="@drawable/tip_new"
-                    android:layout_alignTop="@id/btnFlowers"
-                    android:layout_alignRight="@id/btnFlowers"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp"/>
-
-            </RelativeLayout>
-
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCurrency"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_currency" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Валюта"
+                android:background="@drawable/main_buttons_background" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCar"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_car" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Марки машин"
+                android:background="@drawable/main_buttons_background" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRiver"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_river" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Реки"
+                android:background="@drawable/main_buttons_background" />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCity"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_city" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Города"
+                android:background="@drawable/main_buttons_background" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/btnProf"
-                    android:layout_width="300dp"
-                    android:layout_height="105dp"
-                    android:background="@drawable/btn_prof" />
-
-                <ImageView
-                    android:id="@+id/newProf"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    app:srcCompat="@drawable/tip_new"
-                    android:layout_alignTop="@id/btnProf"
-                    android:layout_alignRight="@id/btnProf"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp"/>
-
-            </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnProf"
+                style="@style/mainTextButton"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Профессии"
+                android:background="@drawable/main_buttons_background" />
 
 
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnChemistry"
+                style="@style/mainTextButton"
                 android:layout_width="300dp"
-                android:layout_height="105dp"
-                android:background="@drawable/btn_chemistry" />
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Хим.элементы"
+                android:background="@drawable/main_buttons_background" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/btnSport"
-                    android:layout_width="300dp"
-                    android:layout_height="105dp"
-                    android:background="@drawable/btn_sport" />
-
-                <ImageView
-                    android:id="@+id/newSport"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    app:srcCompat="@drawable/tip_new"
-                    android:layout_alignTop="@id/btnSport"
-                    android:layout_alignRight="@id/btnSport"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginRight="0dp"/>
-
-            </RelativeLayout>
-
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSport"
+                style="@style/mainTextButton"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Виды спорта"
+                android:background="@drawable/main_buttons_background" />
 
             <TextView
                 android:layout_width="match_parent"

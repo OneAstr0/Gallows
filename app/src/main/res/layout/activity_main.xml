@@ -3,134 +3,194 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/backgroundImageView"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headMain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background" />
-
-
-    <ImageView
-        android:id="@+id/logoMain"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="72dp"
-        android:src="@drawable/logo"
+        android:layout_height="220dp"
+        android:background="@drawable/head_main"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="150dp">
 
-    <TextView
+        <View
+            android:id="@+id/furTree"
+            android:layout_width="121dp"
+            android:layout_height="140dp"
+            android:background="@drawable/fur_tree"
+            android:layout_marginStart="-20dp"
+            android:layout_marginBottom="-26dp"
+            app:layout_constraintBottom_toTopOf="@+id/snowdrift"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/fallenSnow"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/fallen_snow" />
+
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="14dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/balance_background"
+            app:layout_constraintEnd_toStartOf="@+id/btnProfile"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/money"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/userBalanceMain"
+                style="@style/balance"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center_vertical|end"
+                android:paddingEnd="10dp"
+                android:text="0"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <TextView
+            android:id="@+id/mainTextLogo"
+            style="@style/mainTextLogoHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_marginBottom="-40dp"
+            app:layout_constraintBottom_toTopOf="@+id/snowdrift"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/subTextAppVersion"
+            style="@style/mainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/mainTextLogo" />
+
+        <View
+            android:id="@+id/snowdrift"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/snowdrift"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/halogen"
-        android:gravity="center"
-        android:layout_marginTop="-20dp"
-        android:text="v1.0.9.2"
-        android:textSize="20dp"
-        android:textStyle="bold|normal"
+        android:layout_margin="20dp"
+        android:columnCount="2"
+        android:rowCount="2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoMain" />
+        app:layout_constraintTop_toBottomOf="@+id/headMain">
 
-    <ImageButton
-        android:id="@+id/btnGame"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/btn_game"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoMain" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCampaign"
+            style="@style/mainTextButton"
+            android:layout_height="160dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="2"
+            android:background="@drawable/main_buttons_background"
+            android:elevation="50dp"
+            android:text="Уровень 1" />
 
-    <ImageButton
-        android:id="@+id/btnCampaign"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/btn_campaign"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGame"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGame"
+            style="@style/mainText"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_gravity="start"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/main_buttons_background"
+            android:elevation="50dp"
+            android:text="Категории" />
 
-        android:visibility="gone"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShop"
+            style="@style/mainText"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:layout_column="1"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/main_buttons_background"
+            android:elevation="50dp"
+            android:text="Магазин" />
 
-
-    <ImageButton
-        android:id="@+id/btnRules"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/btn_rules"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCampaign" />
-
-    <ImageButton
-        android:id="@+id/btnNews"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/news"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRules" />
-
-
-
+    </GridLayout>
 
     <ImageButton
         android:id="@+id/btnTelegram"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/telegram"
         android:onClick="telegramOnClick"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfile"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btnSettings"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/settings"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageButton
-        android:id="@+id/btnProfile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/profile"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Developed by FedApps"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/defaultItem"
+        android:textStyle="italic"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,1 +1,1 @@
-# Gallows
+# Gallows in RuStore: https://apps.rustore.ru/app/game.gallows
