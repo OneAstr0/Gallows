@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         soundMode = sharedPreferences.getBoolean(SettingsActivity.SOUND_MODE, true);
 
         int money = sharedPreferences.getInt("userMoney", 0);
-        // money = 1;
         balance = findViewById(R.id.userBalanceMain);
         balance.setText(String.valueOf(money));
 
@@ -63,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     Intent intent = new Intent(MainActivity.this, ChooseActivity.class);
+                    intent.putExtra("sourceActivity", "MainActivity");
                     startActivity(intent);
 
                 }
@@ -131,9 +131,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        int money = sharedPreferences.getInt("userMoney", 0);
+        int currentLevel = sharedPreferences.getInt("userLevel", 1);
+        balance = findViewById(R.id.userBalanceMain);
+        btnCampaign = findViewById(R.id.btnCampaign);
+        balance.setText(String.valueOf(money));
+        btnCampaign.setText("Уровень " + String.valueOf(currentLevel));
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         animatedGifFallenSnow.start();
+        int money = sharedPreferences.getInt("userMoney", 0);
+        int currentLevel = sharedPreferences.getInt("userLevel", 1);
+        balance = findViewById(R.id.userBalanceMain);
+        btnCampaign = findViewById(R.id.btnCampaign);
+        balance.setText(String.valueOf(money));
+        btnCampaign.setText("Уровень " + String.valueOf(currentLevel));
     }
 
     @Override

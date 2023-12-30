@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.w3c.dom.Text;
 
@@ -37,7 +38,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     TextView[] slots;
     Button[] buttons;
     String randomWord, category;
-    int fallsCount = 0, totalAttempts, correctAttempts, perfectAttempts;
+    int fallsCount = 0, totalAttempts, correctAttempts, perfectAttempts, entranceBalance, newBalance;
     TextView catText;
     String[] array, animalsArray, floraArray, countryArray, foodArray, mushArray, currencyArray, carArray, riverArray, cityArray, chemArray, profArray, sportArray, flowersArray;
     MediaPlayer sheet1, seehuman, win, lose;
@@ -56,13 +57,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         totalAttempts = sharedPreferences.getInt("totalAttempts", 0);
         correctAttempts = sharedPreferences.getInt("correctAttempts", 0);
         perfectAttempts = sharedPreferences.getInt("perfectAttempts", 0);
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
         totalAttempts = totalAttempts + 1;
         editor.putInt("totalAttempts", totalAttempts);
         editor.apply();
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/await.ttf");
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/await.ttf"); // from Assets
         gallows = findViewById(R.id.gallows);
         gallows.setImageResource(R.drawable.f0);
 
@@ -264,22 +264,24 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateStatistics(boolean isWin) {
         int currentLevel = sharedPreferences.getInt("userLevel", 1);
-        int currentMoney = sharedPreferences.getInt("userMoney", 0);
+        entranceBalance = sharedPreferences.getInt("userMoney", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (isWin) {
             correctAttempts++;
+
             if (isCampaign) {
                 editor.putInt("userLevel", currentLevel+1);
-                editor.putInt("userMoney", currentMoney+3);
+                newBalance = entranceBalance + 3;
             }
-            else editor.putInt("userMoney", currentMoney+1);
+            else newBalance = entranceBalance + 1;
 
             if (fallsCount == 0) {
                 perfectAttempts++;
-                if (isCampaign) editor.putInt("userMoney", currentMoney+5);
-                else editor.putInt("userMoney", currentMoney+2);
+                if (isCampaign) newBalance = entranceBalance + 5;
+                else newBalance = entranceBalance + 2;
             }
         }
+        editor.putInt("userMoney", newBalance);
         editor.putInt("correctAttempts", correctAttempts);
         editor.putInt("perfectAttempts", perfectAttempts);
         editor.apply();
@@ -343,6 +345,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         TextView result = dialogView.findViewById(R.id.result);
         TextView word = dialogView.findViewById(R.id.word);
         TextView falls = dialogView.findViewById(R.id.falls);
+        ConstraintLayout moneyStatistic = dialogView.findViewById(R.id.moneyStatistic);
+        TextView userBalanceDialogView = dialogView.findViewById(R.id.userBalanceDialogView);
+
+        if (isCampaign) {
+            moneyStatistic.setVisibility(View.VISIBLE);
+            userBalanceDialogView.setText("+" + String.valueOf(newBalance-entranceBalance));
+        }
+        else {
+            btnCategory.setVisibility(View.VISIBLE);
+        }
 
         // Установка текста и обработчиков кликов кнопок
         if (isWin) {

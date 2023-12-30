@@ -80,6 +80,15 @@ public class ChooseActivity extends AppCompatActivity {
                         sheet1.start();
                     }
 
+                    Intent gi = getIntent();
+                    if (gi != null) {
+                        String sourceActivity = gi.getStringExtra("sourceActivity");
+                        if (sourceActivity != null) {
+                            finish();
+                        }
+                    }
+
+                    Intent intent = new Intent(ChooseActivity.this, MainActivity.class);
                     finish();
                 }
             });
