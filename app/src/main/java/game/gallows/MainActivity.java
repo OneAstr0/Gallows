@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean soundMode = true;
     private ImageView fallenSnow;
     private AnimatedImageDrawable animatedGifFallenSnow;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
+    private int money, currentLevel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SettingsActivity.SHARED_PREFS, MODE_PRIVATE);
         soundMode = sharedPreferences.getBoolean(SettingsActivity.SOUND_MODE, true);
 
-        int money = sharedPreferences.getInt("userMoney", 0);
+        money = sharedPreferences.getInt("userMoney", 0);
         balance = findViewById(R.id.userBalanceMain);
         balance.setText(String.valueOf(money));
 
-        int currentLevel = sharedPreferences.getInt("userLevel", 1);
+        currentLevel = sharedPreferences.getInt("userLevel", 1);
         btnCampaign = findViewById(R.id.btnCampaign);
         btnCampaign.setText("Уровень " + String.valueOf(currentLevel));
 
@@ -133,10 +134,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        int money = sharedPreferences.getInt("userMoney", 0);
-        int currentLevel = sharedPreferences.getInt("userLevel", 1);
-        balance = findViewById(R.id.userBalanceMain);
-        btnCampaign = findViewById(R.id.btnCampaign);
+        money = sharedPreferences.getInt("userMoney", 0);
+        currentLevel = sharedPreferences.getInt("userLevel", 1);
         balance.setText(String.valueOf(money));
         btnCampaign.setText("Уровень " + String.valueOf(currentLevel));
     }
@@ -145,10 +144,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         animatedGifFallenSnow.start();
-        int money = sharedPreferences.getInt("userMoney", 0);
-        int currentLevel = sharedPreferences.getInt("userLevel", 1);
-        balance = findViewById(R.id.userBalanceMain);
-        btnCampaign = findViewById(R.id.btnCampaign);
+        money = sharedPreferences.getInt("userMoney", 0);
+        currentLevel = sharedPreferences.getInt("userLevel", 1);
         balance.setText(String.valueOf(money));
         btnCampaign.setText("Уровень " + String.valueOf(currentLevel));
     }
