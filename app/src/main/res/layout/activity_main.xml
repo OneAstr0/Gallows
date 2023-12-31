@@ -190,7 +190,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="10dp"
-        android:textColor="@color/defaultItem"
+        android:textColor="@color/grey"
         android:textStyle="italic"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

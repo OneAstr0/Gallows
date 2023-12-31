@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
-    android:layout_height="250dp"
+    android:layout_height="200dp"
     android:layout_gravity="center"
-    android:background="@drawable/winscreen">
+    android:background="@drawable/background_screen">
 
     <TextView
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/await"
         android:text="Вы угадали слово!"
         android:textColor="@color/black"

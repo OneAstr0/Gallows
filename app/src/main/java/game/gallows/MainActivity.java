@@ -21,11 +21,12 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnProfile;
     private MediaPlayer sheet1;
     private TextView balance;
-    private boolean soundMode = true;
     private ImageView fallenSnow;
     private AnimatedImageDrawable animatedGifFallenSnow;
     private SharedPreferences sharedPreferences;
+    private boolean soundMode = true;
     private int money, currentLevel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

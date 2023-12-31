@@ -33,6 +33,13 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="mainTextTitleBlack">
+        <item name="fontFamily">@font/await</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
     <style name="mainTextButton">
         <item name="fontFamily">@font/await</item>
         <item name="android:textSize">52dp</item>
