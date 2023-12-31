@@ -34,14 +34,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textForRandomLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Неизвестная категория"
+        android:fontFamily="@font/await"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/catText"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/gallows"
         android:layout_width="275dp"
         android:layout_height="275dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/catText" />
+        app:layout_constraintTop_toBottomOf="@+id/textForRandomLevel" />
 
 
     <LinearLayout

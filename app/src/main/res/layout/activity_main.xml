@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headMain"
         android:layout_width="match_parent"
@@ -139,16 +138,19 @@
             android:layout_columnWeight="2"
             android:background="@drawable/main_buttons_background"
             android:elevation="50dp"
-            android:text="Уровень 1" />
+            android:text="Уровень 1">
+
+        </androidx.appcompat.widget.AppCompatButton>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGame"
-            style="@style/mainText"
-            android:layout_width="160dp"
+            style="@style/mainTextButton"
+            android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_row="1"
-            android:layout_rowWeight="1"
             android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="2"
             android:layout_gravity="start"
             android:layout_marginTop="20dp"
             android:background="@drawable/main_buttons_background"
@@ -167,7 +169,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/main_buttons_background"
             android:elevation="50dp"
-            android:text="Магазин" />
+            android:text="Магазин"
+            android:visibility="gone"/>
 
     </GridLayout>
 
@@ -185,11 +188,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Developed by FedApps"
+        android:text="v1.1.0 Early\nDeveloped by FedApps "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
         android:textColor="@color/grey"
         android:textStyle="italic"/>
 

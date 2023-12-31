@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     Button[] buttons;
     String randomWord, category;
     int fallsCount = 0, totalAttempts, correctAttempts, perfectAttempts, entranceBalance, newBalance;
-    TextView catText;
+    TextView catText, textForRandomLevel;
     String[] array, animalsArray, floraArray, countryArray, foodArray, mushArray, currencyArray, carArray, riverArray, cityArray, chemArray, profArray, sportArray, flowersArray;
     MediaPlayer sheet1, seehuman, win, lose;
     boolean soundMode = true, isCampaign = false;
@@ -79,8 +79,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         if (category.startsWith("Уровень")) {
             isCampaign = true;
-            Resources res = getResources();
+            textForRandomLevel = findViewById(R.id.textForRandomLevel);
+            textForRandomLevel.setVisibility(View.VISIBLE);
 
+            Resources res = getResources();
             // массив массивов по категориям
             String[][] arrays = {
                     res.getStringArray(R.array.animals25),
@@ -165,8 +167,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        if (!category.startsWith("Уровень")) {
-            openFirstAndLastLetter(); // Открываем первую и последнюю букву
+        if (isCampaign) {
+            openFirstLetter();
+        } else {
+            openFirstAndLastLetter();
         }
     }
 
@@ -285,6 +289,32 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         editor.putInt("correctAttempts", correctAttempts);
         editor.putInt("perfectAttempts", perfectAttempts);
         editor.apply();
+    }
+
+    private void openFirstLetter() {
+        char firstLetter = randomWord.charAt(0);
+        Button firstButton = null;
+
+        for (Button button : buttons) {
+            if (button != null) {
+                char letter = button.getText().charAt(0);
+                if (letter == firstLetter) {
+                    firstButton = button;
+                }
+            }
+        }
+
+        if (firstButton != null) {
+            firstButton.setEnabled(false);
+            firstButton.setTextColor(Color.GRAY);
+        }
+
+        for (int i = 0; i < randomWord.length(); i++) {
+            char letter = randomWord.charAt(i);
+            if (letter == firstLetter) {
+                slots[i].setText(String.valueOf(letter));
+            }
+        }
     }
 
     private void openFirstAndLastLetter() {
